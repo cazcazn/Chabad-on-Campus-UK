@@ -1,0 +1,414 @@
+/* Layout
+ * ------
+ * Using a negative margin technique, adapted from ZEN. The page is loaded by this order:
+ *
+ * 1. Header
+ * 2. Content
+ * 3. Navigation menus
+ * 4. Sidebar Left
+ * 5. Sideabr Right */
+/* remove 'auto' and the width to switch to a fluid width */
+/* line 15, ../sass/layout.sass */
+
+html, body {
+  height: 100%;
+}
+
+#main-wrapper {
+	position:relative; /* needed for footer positioning*/
+  width: 100%;
+  	
+	height:auto !important; /* real browsers */
+	height:100%; /* IE6: treaded as min-height*/
+
+	min-height:100%; /* real browsers */
+}
+
+#body-wrapper {
+  padding-bottom: 20px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+}
+
+.node-internal-article img {
+  margin: 5px 12px;
+}
+
+#logo {
+  float: left;
+}
+
+#header {
+  height: 150px;
+}
+
+#page {
+  width: 880px;
+  margin: 0 auto;
+}
+
+/* Layout rules. (Disclaimer: do not change if you're not sure you know what you're doing.) */
+/* line 20, ../sass/layout.sass */
+#content {
+  float: left;
+  width: 100%;
+  margin-right: -100%;
+  padding: 0;
+}
+
+#block-menu-menu-top-right {
+  float: right;
+  clear: both;
+  line-height: 25px;
+}
+
+#block-menu-menu-top-right .block-inner .content .menu li {
+  text-align: center;
+  width: 70px;
+  list-style: none;
+  float: left;
+  line-height: 25px;
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+
+#block-system-main-menu {
+  float: right;
+  clear: both;
+  margin-top: 66px;
+}
+
+#block-system-main-menu  .block-inner .content .menu li,
+#block-system-main-menu {
+  line-height: 30px;
+}
+
+#block-system-main-menu .block-inner .content .menu li {
+  text-align: center;
+  width: 100px;
+  list-style: none;
+  float: left;
+  display: list-item;
+  padding: 0;
+  margin: 0;
+}
+
+#block-system-main-menu li.last {
+  border-right-color: transparent;
+}
+
+/* line 26, ../sass/layout.sass */
+.sidebar {
+  float: left;
+}
+
+/* line 29, ../sass/layout.sass */
+#sidebar-second {
+  float: right;
+}
+
+/* line 32, ../sass/layout.sass */
+#footer {
+  float: none;
+  clear: both;
+}
+
+/* Layout Helpers */
+/* line 37, ../sass/layout.sass */
+#header,
+#footer,
+.mission,
+.breadcrumb,
+.node {
+  clear: both;
+}
+
+/* Sidebars width
+ * --------------
+ * Changing the width of the sidebars is dead easy, just change the
+ * values below corresponding to the sidebar you want to modify.
+ * Make sure you keep negative values as negative values.
+ * For example, if I want to increase the width of the left sidebar
+ * to 300px, I would have to change each '190' to '300'. */
+/* line 55, ../sass/layout.sass */
+.two-sidebars .center,
+.sidebar-first .center {
+  margin-left: 190px;
+}
+
+/* line 59, ../sass/layout.sass */
+#sidebar-first {
+  width: 190px;
+  margin-right: -190px;
+}
+
+/* line 65, ../sass/layout.sass */
+.two-sidebars .center,
+.sidebar-second .center {
+  margin-right: 200px;
+}
+
+/* line 69, ../sass/layout.sass */
+#sidebar-second {
+  width: 200px;
+}
+
+/* Columns Inner
+ * -------------
+ * You can change the padding inside the columns without changing the
+ * width of them by just usinbg the INNER div of each column */
+/* line 76, ../sass/layout.sass */
+.inner {
+  padding: 0;
+}
+
+/* Navigation styles
+ * -----------------
+ * The navigation is loaded after the content, so we need to make space
+ * for it, equal to its height, so if you change the height of the navigation,
+ * remember to adapt the margin top of the content and sidebars. */
+/* line 84, ../sass/layout.sass */
+#navigation {
+  float: left;
+  margin-left: 0;
+  margin-right: -100%;
+  padding: 0;
+  width: 100%;
+  height: 40px;
+}
+
+/* line 94, ../sass/layout.sass */
+.with-navigation #content,
+.with-navigation .sidebar {
+  margin-top: 40px;
+}
+
+/* Layout
+ * ------
+ * Using a negative margin technique, adapted from ZEN. The page is loaded by this order:
+ *
+ * 1. Header
+ * 2. Content
+ * 3. Navigation menus
+ * 4. Sidebar Left
+ * 5. Sideabr Right */
+/* remove 'auto' and the width to switch to a fluid width */
+/* line 111, ../sass/layout.sass */
+#page {
+  width: 880px;
+  margin: 0 auto;
+}
+
+/* Layout rules. (Disclaimer: do not change if you're not sure you know what you're doing.) */
+/* line 116, ../sass/layout.sass */
+#content {
+  float: left;
+  width: 100%;
+  margin-right: -100%;
+  padding: 0;
+}
+
+/* line 122, ../sass/layout.sass */
+.sidebar {
+  float: left;
+}
+
+/* line 125, ../sass/layout.sass */
+#sidebar-second {
+  float: right;
+}
+
+/* line 128, ../sass/layout.sass */
+#footer {
+  float: none;
+  clear: both;
+}
+
+/* Layout Helpers */
+/* line 133, ../sass/layout.sass */
+#header,
+#footer,
+.mission,
+.breadcrumb,
+.node {
+  clear: both;
+}
+
+/* Sidebars width
+ * --------------
+ * Changing the width of the sidebars is dead easy, just change the
+ * values below corresponding to the sidebar you want to modify.
+ * Make sure you keep negative values as negative values.
+ * For example, if I want to increase the width of the left sidebar
+ * to 300px, I would have to change each '190' to '300'. */
+/* line 151, ../sass/layout.sass */
+.two-sidebars .center,
+.sidebar-first .center {
+  margin-left: 190px;
+}
+
+/* line 155, ../sass/layout.sass */
+#sidebar-first {
+  width: 190px;
+  margin-right: -190px;
+}
+
+/* line 161, ../sass/layout.sass */
+.two-sidebars .center,
+.sidebar-second .center {
+  margin-right: 200px;
+}
+
+/* line 165, ../sass/layout.sass */
+#sidebar-second {
+  width: 200px;
+}
+
+/* Columns Inner
+ * -------------
+ * You can change the padding inside the columns without changing the
+ * width of them by just usinbg the INNER div of each column */
+/* line 172, ../sass/layout.sass */
+.inner {
+  padding: 0;
+}
+
+/* Navigation styles
+ * -----------------
+ * The navigation is loaded after the content, so we need to make space
+ * for it, equal to its height, so if you change the height of the navigation,
+ * remember to adapt the margin top of the content and sidebars. */
+/* line 180, ../sass/layout.sass */
+#navigation {
+  float: left;
+  margin-left: 0;
+  margin-right: -100%;
+  padding: 0;
+  width: 100%;
+  height: 40px;
+}
+
+/* line 190, ../sass/layout.sass */
+.with-navigation #content,
+.with-navigation .sidebar {
+  margin-top: 40px;
+}
+
+
+/* Homepage Layout */
+
+.widgets {
+  float: left;
+  width: 283px;
+  margin-right: 10px;
+}
+
+.page-intro-row {
+
+  background-image: -moz-linear-gradient(
+      center top,
+      rgb(221,128,168) 15%,
+      rgb(219,153,182) 90%
+  );
+
+
+/*  background: -moz-linear-gradient(top, #, #),
+    -moz-linear-gradient(bottom, #D9A3BB, #ffeeee);
+    -moz-background-size: 100% 36px, 100% 100%;*/
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeee', endColorstr='#D9A3BB', GradientType=0);
+
+  padding: 40px 10px 10px 10px;
+  width: 790px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.date-display-single {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.widgets .views-field-title {
+  text-align: center;
+  line-height: 38px;
+}
+
+.widgets .views-field-field-image {
+  height: 200px;
+}
+
+.views-field-field-newspaper,
+.views-field-field-date {
+  padding: 0 10px;
+}
+
+.page-intro-row .views-field-field-summary {
+  position: absolute;
+  text-align: justify;
+  top: 40px;
+  left: 10px;
+  width: 400px;
+}
+
+.views_slideshow_cycle_main,
+.views_slideshow_main,
+.views_slideshow_cycle_slide {
+  width: 880px;
+}
+
+.page-intro-row .views-field-field-image {
+  float: right;
+  margin-right: 15px;
+}
+
+#bet-hay {
+  float: right;
+  padding-top: 10px;
+  clear: both;
+}
+
+.view-display-id-news .views-field-field-summary {
+  float: left;
+  clear: right;
+  height: 100px;
+  width: 649px;
+}
+
+.view-display-id-news .views-field-field-article-image {
+  width: 230px;
+  float: left;
+}
+
+.view-display-id-attachment_2 {
+  margin-bottom: 40px;
+}
+
+.node-webform .field-item {
+  text-align: center;
+}
+
+.webform-component-textfield,
+.webform-component-textarea,
+.webform-component-email {
+  width: 100%;
+}
+
+.webform-component-textfield,
+.webform-component-textarea,
+.webform-component-email,
+.webform-component input {
+  float: left;
+}
+
+.webform-component-textfield label,
+.webform-component-email label {
+  float: left;
+  width: 25%;
+}

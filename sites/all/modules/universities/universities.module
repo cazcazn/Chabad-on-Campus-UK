@@ -1,0 +1,47 @@
+<?php
+
+function universities_taxonomy_term_update($term) {
+  universities_geolocate($term);
+}
+
+function universities_taxonomy_term_insert($term) {
+  universities_geolocate($term);
+}
+
+// Geolocates by term name if no postcode is supplied
+function universities_geolocate($term) {
+  if($term->vocabulary_machine_name == 'universities') {
+    // If there is a postcode, append to the name
+    $name = str_replace(' ', '+', $term->name);
+    
+    if(isset($term->field_postcode['und'][0])) $name .= '+' . str_replace(' ', '+', $term->field_postcode['und'][0]['value']);
+    
+    $gc = drupal_http_request("http://maps.googleapis.com/maps/api/geocode/json?address=" . $name . ',+UK' . "&sensor=false");
+    if($gc->code == 200) {
+      $results = json_decode($gc->data, true);
+      
+      if($results["status"] == "OK") {
+        $res = $results["results"][0];
+        if($res["types"][0] == 'university') {
+          db_query("INSERT INTO {field_data_field_lat} VALUES ('taxonomy_term','universities', 0, :tid, :tid, 'und', 0, :lat)   ON DUPLICATE KEY UPDATE field_lat_value=:lat; INSERT INTO {field_data_field_lng} VALUES ('taxonomy_term','universities', 0, :tid, :tid, 'und', 0, :lng)   ON DUPLICATE KEY UPDATE field_lng_value=:lng;", array('tid' => $term->tid, 'lat' => $res["geometry"]["location"]["lat"], 'lng' => $res["geometry"]["location"]["lng"]));
+          return;
+        }
+      }
+    }
+    drupal_set_message("Set the address of the university manually " . l(t('here.'), drupal_get_path_alias('taxonomy/term/' . $term->tid)));
+  }
+  
+  // Enable the uni to be seen
+  if(empty($term->description)) db_query("UPDATE {taxonomy_term_data} SET description=' ' WHERE tid=:tid;", array('tid' => $term->tid));
+}
+
+// Show a static map on the university page
+function universities_taxonomy_term_view_alter(&$build) {
+  if($build['#bundle'] == 'universities') {
+    $build += common_stuff_static_map_block(array('width' => 200, 'height' => 200, 'lat' => $build['field_lat']['#items'][0]['value'], 'lng' => $build['field_lng']['#items'][0]['value'], 'title' => $build['#term']->name));
+    dpm($build);
+    unset($build['field_lat']);
+    unset($build['field_lng']);
+    unset($build['field_postcode']);
+  }
+}

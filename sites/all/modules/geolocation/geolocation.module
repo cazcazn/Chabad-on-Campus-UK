@@ -1,0 +1,58 @@
+<?php
+
+// Geolocate on the address when the node is submitted
+function geolocation_node_validate($node, $form, &$form_state) {
+
+  if($form["type"]["#value"] == "branch") {
+
+    // Grab the address from the form
+    $address_names = array(
+      "field_street_name", "field_postcode"
+    );
+
+    $address = "";
+
+    foreach($address_names as $name) {
+      $address .= $form_state["values"][$name]["und"][0]["value"] . " ";
+    }
+
+    $address = str_replace(" ", "+", $address);
+
+    // Geolocate on the address
+    $status = _geocode_address($address);
+
+    if($status == "ZERO") {
+      form_set_error("branch-node-form", "Could not find the address. Please try again.");
+    }
+
+    else if($status == NULL) {
+      form_set_error("branch-node-form", "Unexpected geocoding error. Please try again.");
+    }
+
+    else {
+      // Set the latitude and longitude
+      $form_state["values"]["field_lat"]["und"][0]["value"] = $status["lat"];
+      $form_state["values"]["field_lng"]["und"][0]["value"] = $status["lng"];
+    }
+
+  }
+}
+
+function _geocode_address($address) {
+
+  // Perform the geolocation
+  $gc = drupal_http_request("http://maps.googleapis.com/maps/api/geocode/json?address=" . $address . "&sensor=false");
+
+  if($gc->code == 200) {
+    $results = json_decode($gc->data, true);
+
+    if($results["status"] == "ZERO_RESULTS") {
+      return "ZERO";
+    }
+
+    else if($results["status"] == "OK") {
+      return $results["results"][0]["geometry"]["location"];
+    }
+  }
+  return NULL;
+}

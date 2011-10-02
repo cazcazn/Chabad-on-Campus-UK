@@ -1,0 +1,3 @@
+name = Geolocation
+description = Geolocates on postcode
+core = 7.x

@@ -1,0 +1,62 @@
+<?php
+
+function common_stuff_block_info() {
+  return array(
+    'static_map' => array(
+      'info' => 'Static map',
+    ),
+  );
+}
+
+/*
+ * Calculate haversine distance
+ * @param c1 array lat, lng
+ * @param c2 array lat, lng
+ */
+function common_stuff_haversine($c1, $c2) {
+  $uLat = $c1['lat'];
+  $uLng = $c1['lng'];
+  
+  $earth_rad = 6371;
+
+  $dLat = deg2rad($c2['lat'] - $uLat);
+  $dLon = deg2rad($c2['lng'] - $uLng);
+
+  $a = sin($dLat/2) * sin($dLat/2) + cos(deg2rad($c2['lat'])) * cos(deg2rad($uLat)) * sin($dLon/2) * sin($dLon/2);
+  $c = 2 * asin(sqrt($a));
+  return sprintf("%01.2f", $earth_rad * $c);
+}
+
+function common_stuff_static_map_block($variables) {
+  $mapParams = array(
+    'size' => $variables['width'] . 'x' . $variables['height'],
+    'format' => 'png',
+    'markers' => "{$variables['lat']},{$variables['lng']}",
+    'zoom' => 14,
+    'sensor' => 'false',
+  );
+  return array(
+    'subject' => NULL,
+    'content' => array(
+      'static_map' => array(
+        '#weight' => '6',
+        'zoom' => 11,
+        'sensor' => 'false',
+        '#markup' => 
+          theme_image(array(
+            'path' => 'http://maps.google.com/maps/api/staticmap?' . drupal_http_build_query($mapParams),
+             'alt' => t('Map of @title', array('@title' => $variables['title'])),
+              'attributes' => array('class' => array('static_map')),
+          ) + array('width' => $variables['width'], 'height' => $variables['height'])
+        ),
+      ),
+    ),
+  );
+}
+
+function common_stuff_block_view_common_stuff_static_map_alter(&$data, $block) {
+  $node = node_load(arg(1));
+  if(isset($node->field_lat['und']) && isset($node->field_lng['und'])) {
+    $data = common_stuff_static_map_block(array('width' => 200, 'height' => 200, 'lat' => $node->field_lat['und'][0]['value'], 'lng' => $node->field_lng['und'][0]['value'], 'title' => $node->title));
+  }
+}

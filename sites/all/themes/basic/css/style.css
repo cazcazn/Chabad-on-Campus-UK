@@ -1,0 +1,467 @@
+/* Font styles. */
+/* line 2, ../sass/style.sass */
+html {
+  background: #E9EFF7;
+}
+body {
+  margin: 0;
+  /* Setting up font size, leading and font family
+   * http://www.markboulton.co.uk/journal/comments/five-simple-steps-to-better-typography */
+  font: 13px/1.5em "Lucida","Lucida Grande","Trebuchet MS",Tahoma,Verdana,sans-serif;
+
+  letter-spacing: 0.03em;
+
+}
+
+.front.logged-in {
+
+  background: #92b7e0; /* Old browsers */
+  background: -moz-linear-gradient(top, #92b7e0 126px, #3976a7 640px, #ffffff 640px, #e9eff7 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(126px,#92b7e0), color-stop(640px,#3976a7), color-stop(640px,#ffffff), color-stop(100%,#e9eff7)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #92b7e0 126px,#3976a7 640px,#ffffff 640px,#e9eff7 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #92b7e0 126px,#3976a7 640px,#ffffff 640px,#e9eff7 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #92b7e0 126px,#3976a7 640px,#ffffff 640px,#e9eff7 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#92b7e0', endColorstr='#e9eff7',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #92b7e0 126px,#3976a7 640px,#ffffff 640px,#e9eff7 100%); /* W3C */
+
+}
+
+.front.not-logged-in {
+  background: #92b7e0; /* Old browsers */
+  background: -moz-linear-gradient(top, #92b7e0 126px, #3976a7 575px, #ffffff 575px, #e9eff7 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(126px,#92b7e0), color-stop(575px,#3976a7), color-stop(575px,#ffffff), color-stop(100%,#e9eff7)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #92b7e0 126px,#3976a7 575px,#ffffff 575px,#e9eff7 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #92b7e0 126px,#3976a7 575px,#ffffff 575px,#e9eff7 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #92b7e0 126px,#3976a7 575px,#ffffff 575px,#e9eff7 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#92b7e0', endColorstr='#e9eff7',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #92b7e0 126px,#3976a7 575px,#ffffff 575px,#e9eff7 100%); /* W3C */
+}
+
+.not-front {
+
+  background: #92b7e0; /* Old browsers */
+  background: -moz-linear-gradient(top, #92b7e0 120px, #3976a7 250px, #ffffff 250px, #e9eff7 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(120px,#92b7e0), color-stop(250px,#3976a7), color-stop(250px,#ffffff), color-stop(100%,#e9eff7)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #92b7e0 120px,#3976a7 250px,#ffffff 250px,#e9eff7 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #92b7e0 120px,#3976a7 250px,#ffffff 250px,#e9eff7 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #92b7e0 120px,#3976a7 250px,#ffffff 250px,#e9eff7 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#92b7e0', endColorstr='#e9eff7',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #92b7e0 120px,#3976a7 250px,#ffffff 250px,#e9eff7 100%); /* W3C */
+
+}
+
+.not-front.not-logged-in h1 {
+  margin-top: -22px;
+  margin-bottom: 60px;
+}
+
+.not-front.logged-in h1 {
+  margin-top: -55px;
+  margin-bottom: 60px;
+}
+
+.not-front .views-field-title {
+  text-align: left;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.not-front .views-field-field-date-1 {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.views-slideshow-cycle-main-frame-row-item .views-field-title {
+  text-align: center;
+}
+
+#page {
+  position: relative;
+}
+
+#body-wrapper {
+  background: url('../images/header-bg.png') repeat-x;
+}
+
+#header-region {
+  float: right;
+}
+
+/* Links */
+
+#block-menu-menu-top-right > .block-inner > .content > .menu a {
+  text-shadow: 1px 1px 1px #e4e3e8;
+  color: #497da7;
+  display: block;
+  height: 25px;
+  line-height: 25px;
+}
+
+block-system-main-menu > .block-inner > .content > .menu a {
+  text-shadow: 1px 1px 1px #e4e3e8;
+  color: #497da7;
+  font-size: 16px;
+  display: block;
+  height: 30px;
+  line-height: 30px;
+}
+
+#block-menu-menu-top-right a.active,
+#block-system-main-menu a.active {
+  color: black;
+}
+
+
+/* line 11, ../sass/style.sass */
+a:link, a:visited {
+  color: blue;
+  text-decoration: none;
+}
+
+/* line 16, ../sass/style.sass */
+a:hover, a:active {
+  color: red;
+  text-decoration: underline;
+}
+
+/* Titles. */
+
+/* line 28, ../sass/style.sass */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.3em;
+}
+
+/* line 31, ../sass/style.sass */
+h1 {
+  font-size: 2.2em;
+  font-weight: 300;
+  padding: 0 0 0.5em 0;
+  margin: 0 auto;
+/*  text-shadow: 1px 0 1px #006; */
+  color: #eee;
+  text-align: center;
+}
+
+.media-image-title {
+  font-size: 1.6em;
+}
+
+.newspaper-label {
+  float: left;
+  padding-right: 10px;
+  font-weight: bold;
+}
+
+.views-field-field-image {
+  text-align: center;
+}
+
+.views-row {
+  margin-bottom: 30px;
+}
+
+/*
+.views-row {
+  float: left;
+  width: 100%;
+}
+*/
+
+
+/* line 37, ../sass/style.sass */
+
+/* Change to fit with rest of theme */
+h2 {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 0.75em;
+  color: #000044;
+}
+
+/* line 42, ../sass/style.sass */
+h3 {
+  font-size: 1.4em;
+  margin-bottom: 1em;
+}
+
+/* line 46, ../sass/style.sass */
+h4 {
+  font-size: 1.2em;
+  margin-bottom: 0.8em;
+}
+
+/* line 50, ../sass/style.sass */
+h5 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+/* line 55, ../sass/style.sass */
+h6 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+/* Paragraph styles. */
+/* line 60, ../sass/style.sass */
+p {
+  margin: 0 0 1em 0;
+}
+
+/* List styles. */
+/* line 64, ../sass/style.sass */
+ul, ol {
+  margin-left: 0;
+  padding-left: 2em;
+}
+
+/* Table styles. */
+/* line 69, ../sass/style.sass */
+table {
+  width: 99%;
+}
+
+/* line 74, ../sass/style.sass */
+tr.even td,
+tr.odd td {
+  padding: 10px 5px;
+}
+
+/* line 77, ../sass/style.sass */
+tr.odd {
+  background-color: white;
+}
+
+/* Code. */
+/* line 81, ../sass/style.sass */
+pre, code, tt {
+  font: 1em "andale mono", "lucida console", monospace;
+  line-height: 1.5;
+}
+
+/* line 85, ../sass/style.sass */
+pre {
+  background-color: #efefef;
+  display: block;
+  padding: 5px;
+  margin: 5px 0;
+  border: 1px solid #aaaaaa;
+}
+
+.menu li {
+}
+
+/* List styles. */
+/* line 93, ../sass/style.sass */
+ul li.leaf {
+  list-style: none;
+}
+
+/* line 95, ../sass/style.sass
+/*ul ul {
+  list-style-type: circle;
+}
+/* line 97, ../sass/style.sass
+ul ul ul {
+  list-style-type: square;
+}
+/* line 99, ../sass/style.sass
+ul ul ul ul {
+  list-style-type: circle;
+}
+*/
+
+/* line 102, ../sass/style.sass */
+ol {
+  list-style-type: decimal;
+}
+/* line 104, ../sass/style.sass */
+ol ol {
+  list-style-type: lower-alpha;
+}
+/* line 106, ../sass/style.sass */
+ol ol ol {
+  list-style-type: decimal;
+}
+
+/* Abbreviation. */
+/* line 110, ../sass/style.sass */
+abbr {
+  border-bottom: 1px dotted #666666;
+  cursor: help;
+  white-space: nowrap;
+}
+
+/* UI improvments. */
+/* line 116, ../sass/style.sass */
+#edit-title {
+  font-size: 24px;
+  width: 99%;
+}
+
+/* line 120, ../sass/style.sass */
+#system-themes-form img {
+  width: 100px;
+}
+
+/* line 123, ../sass/style.sass */
+.form-item .description {
+  font-style: italic;
+  line-height: 1.2em;
+  font-size: 0.8em;
+  margin-top: 5px;
+  color: #777777;
+}
+
+/* line 130, ../sass/style.sass */
+#edit-delete {
+  color: #cc0000;
+}
+
+/* Console, style from slate theme. */
+/* line 134, ../sass/style.sass */
+div.messages {
+  padding: 9px;
+  margin: 1em 0;
+  color: #003366;
+  background: #bbddff;
+  border: 1px solid #aaccee;
+}
+
+/* line 141, ../sass/style.sass */
+div.warning {
+  color: #884400;
+  background: #ffee66;
+  border-color: #eedd55;
+}
+
+/* line 146, ../sass/style.sass */
+div.error {
+  color: white;
+  background: #ee6633;
+  border-color: #dd5522;
+}
+
+/* line 151, ../sass/style.sass */
+div.status {
+  color: #336600;
+  background: #ccff88;
+  border-color: #bbee77;
+}
+
+/* Region Colors. */
+#header {
+  background: url(../images/header.png) no-repeat 434px 0;
+}
+
+/* line 157, ../sass/style.sass */
+#footer {
+  background: #efefef;
+  text-align: center;
+  font-size: 9px;
+}
+
+/* line 160, ../sass/style.sass */
+#sidebar-first {
+  background: #e7edff;
+}
+
+/* line 163, ../sass/style.sass */
+#sidebar-second {
+  background: #ffd075;
+}
+
+/* line 166, ../sass/style.sass */
+#navigation {
+  background: #feffa5;
+}
+
+#facebook {
+  background-image: url('http://chabad.glassberg-powell.com/sites/default/files/styles/icons.png');
+}
+
+#twitter {
+  background-image: url('http://chabad.glassberg-powell.com/sites/default/files/styles/icons.png');
+  background-position: 0 -31px;
+}
+
+#youtube {
+  background-image: url('http://chabad.glassberg-powell.com/sites/default/files/styles/icons.png');
+  background-position: 0 -62px;
+}
+
+#facebook, #twitter, #youtube {
+  height: 30px;
+  width: 30px;
+  float: left;
+  margin-left: 7px;
+}
+
+#header-icons {
+  position: absolute;
+  right: 7px;
+  top: 31px;
+}
+
+.views_slideshow_cycle_slide .views-field-field-image {
+  background: #e7ecf1;
+  border: 1px solid #fff;
+  border-bottom-color: transparent;
+  height: 300px;
+  overflow: hidden;
+}
+
+.views_slideshow_cycle_slide .views-field-field-image img {
+  width: 880px;
+}
+
+.views_slideshow_cycle_slide .views-field-field-summary {
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #fff;
+  text-align: center;
+  color: #fff;
+  font-size: 1.2em;
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dd87ac', endColorstr='#dd3981', GradientType=0);
+  background: -webkit-gradient(linear, left top, left bottom, from(#dd87ac), to(#dd3981));
+  background: -moz-linear-gradient(top,  #dd87ac, #dd3981);
+  background-image: -o-linear-gradient(top, #dd87ac, #dd3981);
+}
+
+.widgets {
+
+  background: #5b94de; /* Old browsers */
+  background: -moz-linear-gradient(top, #5b94de 0%, #0b50ab 40px, #ffffff 41px, #dbd3d6 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5b94de), color-stop(40px,#0b50ab), color-stop(41px,#ffffff), color-stop(100%,#dbd3d6)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #5b94de 0%,#0b50ab 40px,#ffffff 41px,#dbd3d6 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #5b94de 0%,#0b50ab 40px,#ffffff 41px,#dbd3d6 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #5b94de 0%,#0b50ab 40px,#ffffff 41px,#dbd3d6 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5b94de', endColorstr='#dbd3d6',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #5b94de 0%,#0b50ab 40px,#ffffff 41px,#dbd3d6 100%); /* W3C */
+
+  overflow: hidden;
+  position: relative;
+  box-shadow: 1px 2px 2px #203;
+  -moz-box-shadow: 1px 1px 1px black;
+}
+
+.widgets .views-field-title a,
+.widgets .views-field-title a:link,
+.widgets .views-field-title a:visited {
+  color: #e1e5f6;
+  font-size: 20px;
+}
+
+.view-id-media a {
+  color: #4f4f50;
+}
+
+.pane-branches-universities-served ul {
+  list-style-type: none;
+}
+
+.pane-branches-universities-served ul li {
+  margin-left: 0;
+}

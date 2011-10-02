@@ -1,0 +1,38 @@
+#branches-map-canvas {
+  height: 670px;
+  width: 500px;
+  float: left;
+  -moz-box-shadow: 2px 2px 2px #111;
+  -webkit-box-shadow: 2px 2px 2px #111;
+  box-shadow: 2px 2px 2px #111;
+  margin-bottom: 20px;
+}
+
+#branches-info {
+  float: right;
+  width: 300px;
+}
+
+#branches-info td {
+  padding-left: 5px;
+}
+
+#branches-info tr {
+  border-bottom: 1px solid #ccc;
+}
+
+#branches-info span {
+  float: left;
+  clear: both;
+}
+
+#branches-info-content {
+  width: 250px;
+  height: 85px;
+  text-align: center;
+  vertical-align: center;
+}
+
+.branch-selected {
+  background-color: rgba(3, 3, 9, 0.1);
+}
