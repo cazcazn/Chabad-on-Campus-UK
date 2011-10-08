@@ -1,0 +1,123 @@
+<?php
+
+function events_menu() {
+  return array(
+    'admin/config/media/events' => array(
+      'title' => 'Configure events calendar',
+      'access arguments' => array('administer events'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('events_admin'),
+      'type' => MENU_CALLBACK,
+      'file' => 'events.admin.inc',
+    ),
+  );
+}
+
+function events_permission() {
+  return array(
+    'administer events' => array(
+      'title' => t('Administer events'), 
+      'description' => t('Change colours on the events calendar.'),
+    ),
+  );
+}
+
+function events_xml_parse() {
+  // Select all branches
+  $branches = db_query('SELECT * FROM {node} WHERE type=:t', array('t' => 'branch'))->fetchAll();
+  // Read the xml events
+  foreach($branches as $b) {
+    $node = node_load($b->nid);
+    
+    // If node is Liverpool or Shoreditch, they're using a funny format so ignore for now
+    if($node->title == 'Liverpool' || $node->title == 'London - Shoreditch') continue;
+    
+    // Format the URL
+    $url = $node->field_link['und'][0]['url'];
+    $slash = substr($url, strlen($url) - 1) == '/' ? '' : '/';
+    $http = substr($url, 0, 4) == 'http' ? '' : 'http://';
+    
+    // Grab the XML
+    $events = simplexml_load_file($http . $url . $slash . 'tools/rss/cal_events_rss.xml');
+    
+    // For each event
+    foreach($events->channel->item as $e) {
+      // Check that the event doesn't already exist in the database
+      if(!(db_query(
+          "SELECT COUNT(nid) from {node} as n, field_data_field_link as l WHERE n.type=:type and n.title=:title and l.field_link_url=:link;",
+          array(
+            'type' => 'event',
+            'title' => $e->title,
+            'link' => $e->link,
+          )
+        )->fetchField()
+      )) {
+        // Grab the date from the link
+        $date = array();
+        preg_match("(([0]?[1-9]|1[012])[/]([0]?[1-9]|[12][0-9]|3[01])[/](19|20\d\d))", $e->link, $date);
+        
+        // Grab the time from the title
+        $time = array();
+        preg_match("(([0]?[1-9]|[1][0-2])[:]([0-6][0-9])(am|pm))", $e->title, $time);
+        
+        // If these aren't null
+        if(!is_null($time) && !is_null($date)) {
+          // Create the new node
+          $node = new stdClass;
+          $node->type = 'event';
+          $node->language = 'und';
+          $node->title = htmlspecialchars_decode($e->title);
+          $node->field_link = array(
+            'und' => array(
+              0 => array(
+                'url' => $e->link,
+              ),
+            ),
+          );
+          $node->field_desc = array(
+            'und' => array(
+              0 => array(
+                'value' => htmlspecialchars_decode((string)$e->description[0]),
+              ),
+            ),
+          );
+          $d = format_date(mktime($time[1], $time[2], 0, $date[1], $date[2], $date[3]), 'custom', 'Y-m-d\TH:i:00');
+          $node->field_event_date = array(
+            'und' => array(
+              0 => array(
+                'value' => $d,
+              ),
+            ),
+          );
+          $node->field_branch = array(
+            'und' => array(
+              0 => array(
+                'nid' => $b->nid,
+              ),
+            ),
+          );
+          
+          node_save($node);
+          
+        }
+        else {
+          // Create watchdog
+          watchdog('event', t("@chabad @link @title date/time not found"),
+            array(
+              '@chabad' => $node->title,
+              '@link' => $e->link,
+              '@title' => $e->title
+            ), WATCHDOG_NOTICE);
+        }        
+      }
+    }
+  }
+}
+
+function events_delete_nodes() {
+  $events = db_query('SELECT * FROM {node} WHERE type=:t', array('t' => 'event'))->fetchAll();
+  foreach($events as $e) {
+    print $e;
+    node_delete($e->nid);
+  }
+}

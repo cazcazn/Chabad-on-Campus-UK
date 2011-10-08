@@ -15,7 +15,7 @@
     <?php print $page_top; ?>
     <?php print $page; ?>
     <?php print $page_bottom; ?>
-    <div id="footer">Chabad on Campus UK - A branch of Chabad Lubavitch UK charity number 227638 - for more information please email info@chabadoncampus.org.uk</div>
+    <div id="footer">Chabad on Campus UK - A branch of Chabad Lubavitch UK charity number 227638 - for more information please email info@chabadoncampus.org.uk<?php if(!$user->uid): ?><span id="login-link"><a href="/user">Login</a></span><?php endif ?></div>
   </div>
 </body>
 </html>

@@ -1,0 +1,7 @@
+name = Universities
+description = Stuff for unis
+core = 7.x
+package = Chabad
+
+dependencies[] = geolocation
+dependencies[] = branches
