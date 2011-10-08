@@ -1,5 +1,4 @@
 <?php
-// $Id: contact.pages.inc,v 1.45 2010/11/30 17:16:37 dries Exp $
 
 /**
  * @file
@@ -64,14 +63,14 @@ function contact_site_form($form, &$form_state) {
   $form['#attributes']['class'][] = 'contact-form';
   $form['name'] = array(
     '#type' => 'textfield',
-    '#title' => t('Name'),
+    '#title' => t('Your name'),
     '#maxlength' => 255,
     '#default_value' => $user->uid ? format_username($user) : '',
     '#required' => TRUE,
   );
   $form['mail'] = array(
     '#type' => 'textfield',
-    '#title' => t('E-mail address'),
+    '#title' => t('Your e-mail address'),
     '#maxlength' => 255,
     '#default_value' => $user->uid ? $user->mail : '',
     '#required' => TRUE,

@@ -40,13 +40,13 @@ function common_stuff_static_map_block($variables) {
     'content' => array(
       'static_map' => array(
         '#weight' => '6',
-        'zoom' => 11,
+        'zoom' => 13,
         'sensor' => 'false',
         '#markup' => 
           theme_image(array(
             'path' => 'http://maps.google.com/maps/api/staticmap?' . drupal_http_build_query($mapParams),
              'alt' => t('Map of @title', array('@title' => $variables['title'])),
-              'attributes' => array('class' => array('static_map')),
+              'attributes' => array('class' => array('static-map')),
           ) + array('width' => $variables['width'], 'height' => $variables['height'])
         ),
       ),

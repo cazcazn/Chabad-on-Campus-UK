@@ -37,6 +37,12 @@ function basic_preprocess_page(&$vars, $hook) {
   }
 }
 
+function basic_preprocess(&$variables, $hook) {
+  if(isset($variables['page']['content']['system_main']['no_content'])) {
+    unset($variables['page']['content']['system_main']['no_content']);
+  }
+}
+
 function basic_preprocess_node(&$vars) {
   // Add a striping class.
   $vars['classes_array'][] = 'node-' . $vars['zebra'];

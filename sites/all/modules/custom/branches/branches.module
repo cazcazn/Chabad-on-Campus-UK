@@ -99,36 +99,19 @@ function branches_generate_markers() {
   return $map_info;
 }
 
-/**
-  * Implementation of hook_update().
-  */
-function branches_node_update($node) {
-  if(isset($node->field_unis['und'][0])) {
-    foreach($node->field_unis['und'] as $uni) {
-      // Check that the term isn't already on the list
-      $tax = taxonomy_get_term_by_name($uni['value']);
-      if(empty($tax)) {
-        $t = new stdClass;
-        $t->vid = 3;
-        $t->name = $uni['value'];
-        $t->vocabulary_machine_name = 'universities';
-        taxonomy_term_save($t);
-      }
-    }
-  }
-}
-
+/*
+ * Alter the block being displayed
+ */
 function branches_block_view_branches_universities_served_alter(&$data, $block) {
   $node = node_load(arg(1));
   
-  if(isset($node->field_universities['und'])) {
+  if(isset($node->field_unis['und'])) {
     $distances = array();
     $paths = array();
     
     // Calculate the Haversine distance for each university and create an array
-    foreach($node->field_universities['und'] as $u) {
-      $t = taxonomy_term_load($u['tid']);
-//      dpm($u);
+    foreach($node->field_unis['und'] as $u) {
+      $t = taxonomy_term_load($u['target_id']);
       
       if(isset($t->field_lat['und']) && isset($t->field_lng['und'])) {
         $distance = common_stuff_haversine(
@@ -141,10 +124,10 @@ function branches_block_view_branches_universities_served_alter(&$data, $block) 
             'lng' => $t->field_lng['und'][0]['value'],
           )
         );
-        $distances[$u['tid']] = $distance;
+        $distances[$t->tid] = $distance;
       }
-      else $distances[$u['tid']] = 999;
-      $paths[$u['tid']] = l(t($t->name), drupal_get_path_alias('taxonomy/term/' . $t->tid)) . ' (' . $distances[$u['tid']] . ' miles)';
+      else $distances[$t->tid] = 999;
+      $paths[$t->tid] = l(t($t->name), drupal_get_path_alias('taxonomy/term/' . $t->tid)) . ' (' . $distances[$t->tid] . ' miles)';
     }
     
     array_multisort($distances, SORT_ASC, $paths);
@@ -184,4 +167,8 @@ function branches_theme() {
       'template' => 'branches',
     ),
   );
+}
+
+function branches_get_branches() {
+  return db_query('SELECT title, nid FROM {node} WHERE type=:type;', array('type' => 'branch'))->fetchAll();
 }

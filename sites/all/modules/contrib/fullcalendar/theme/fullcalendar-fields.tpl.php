@@ -21,11 +21,6 @@
 <?php if (!empty($data)): ?>
   <h3 class="title"><?php echo $entity->title; ?></h3>
   <?php foreach ($data as $row): ?>
-  <?php if(isset($entity->field_branch['und'][0]['nid'])) {
-    $n = node_load($entity->field_branch['und'][0]['nid']);
-    $branch = strtolower(str_replace(' ', '-', $n->title));
-    drupal_add_css(drupal_get_path('module', 'events') . '/css/colours.css');
-  } ?>
     <div class="fullcalendar-instance<?php if(isset($branch)): ?> <?php print $branch ?><?php endif ?>">
       <?php print $row; ?>
     </div>

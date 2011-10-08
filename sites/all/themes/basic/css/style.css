@@ -1,3 +1,18 @@
+/* Custom */
+.events-key th {
+  border-bottom: 0px;
+}
+
+#chabad-houses {
+  float: right;
+  margin-right: 20px;
+}
+
+.vocabulary-universities .static-map {
+  float: left;
+  margin-right: 20px;
+}
+
 /* Font styles. */
 /* line 2, ../sass/style.sass */
 html {

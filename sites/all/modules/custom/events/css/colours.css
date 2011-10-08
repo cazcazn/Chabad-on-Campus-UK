@@ -1,0 +1,104 @@
+.events-key .events-bristol,
+.events-bristol .fc-event-skin,
+.events-bristol.fc-event,
+.events-bristol .fc-event-time {
+  background-color: #E01B4C;
+  border-color: #E01B4C;
+  border-style: solid;
+}
+.events-key .events-edinburgh,
+.events-edinburgh .fc-event-skin,
+.events-edinburgh.fc-event,
+.events-edinburgh .fc-event-time {
+  background-color: #E01BD0;
+  border-color: #E01BD0;
+  border-style: solid;
+}
+.events-key .events-leeds,
+.events-leeds .fc-event-skin,
+.events-leeds.fc-event,
+.events-leeds .fc-event-time {
+  background-color: #911BE0;
+  border-color: #911BE0;
+  border-style: solid;
+}
+.events-key .events-cambridge,
+.events-cambridge .fc-event-skin,
+.events-cambridge.fc-event,
+.events-cambridge .fc-event-time {
+  background-color: #1B28E0;
+  border-color: #1B28E0;
+  border-style: solid;
+}
+.events-key .events-liverpool,
+.events-liverpool .fc-event-skin,
+.events-liverpool.fc-event,
+.events-liverpool .fc-event-time {
+  background-color: #1B87E0;
+  border-color: #1B87E0;
+  border-style: solid;
+}
+.events-key .events-london---shoreditch,
+.events-london---shoreditch .fc-event-skin,
+.events-london---shoreditch.fc-event,
+.events-london---shoreditch .fc-event-time {
+  background-color: #1BDDE0;
+  border-color: #1BDDE0;
+  border-style: solid;
+}
+.events-key .events-sussex-&-s.-e.-coast,
+.events-sussex-&-s.-e.-coast .fc-event-skin,
+.events-sussex-&-s.-e.-coast.fc-event,
+.events-sussex-&-s.-e.-coast .fc-event-time {
+  background-color: #36C;
+  border-color: #36C;
+  border-style: solid;
+}
+.events-key .events-london---south,
+.events-london---south .fc-event-skin,
+.events-london---south.fc-event,
+.events-london---south .fc-event-time {
+  background-color: #1BE01B;
+  border-color: #1BE01B;
+  border-style: solid;
+}
+.events-key .events-london---south-kensington,
+.events-london---south-kensington .fc-event-skin,
+.events-london---south-kensington.fc-event,
+.events-london---south-kensington .fc-event-time {
+  background-color: #E0811B;
+  border-color: #E0811B;
+  border-style: solid;
+}
+.events-key .events-oxford,
+.events-oxford .fc-event-skin,
+.events-oxford.fc-event,
+.events-oxford .fc-event-time {
+  background-color: #800808;
+  border-color: #800808;
+  border-style: solid;
+}
+.events-key .events-manchester,
+.events-manchester .fc-event-skin,
+.events-manchester.fc-event,
+.events-manchester .fc-event-time {
+  background-color: #7C0880;
+  border-color: #7C0880;
+  border-style: solid;
+}
+.events-key .events-london---bloomsbury,
+.events-london---bloomsbury .fc-event-skin,
+.events-london---bloomsbury.fc-event,
+.events-london---bloomsbury .fc-event-time {
+  background-color: #081080;
+  border-color: #081080;
+  border-style: solid;
+}
+.events-key .events-nottingham,
+.events-nottingham .fc-event-skin,
+.events-nottingham.fc-event,
+.events-nottingham .fc-event-time {
+  background-color: #088074;
+  border-color: #088074;
+  border-style: solid;
+}

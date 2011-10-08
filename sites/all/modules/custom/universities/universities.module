@@ -14,20 +14,22 @@ function universities_geolocate($term) {
     // If there is a postcode, append to the name
     $name = str_replace(' ', '+', $term->name);
     
+    if(isset($term->field_street_name['und'][0])) $name .= '+' . str_replace(' ', '+', $term->field_street_name['und'][0]['value']);
     if(isset($term->field_postcode['und'][0])) $name .= '+' . str_replace(' ', '+', $term->field_postcode['und'][0]['value']);
     
-    $gc = drupal_http_request("http://maps.googleapis.com/maps/api/geocode/json?address=" . $name . ',+UK' . "&sensor=false");
+    $gc = drupal_http_request("http://maps.googleapis.com/maps/api/geocode/json?address=" . $name . '+UK&sensor=false');
     if($gc->code == 200) {
       $results = json_decode($gc->data, true);
       
       if($results["status"] == "OK") {
         $res = $results["results"][0];
-        if($res["types"][0] == 'university') {
+//        if(in_array('university', $res["types"])) {
           db_query("INSERT INTO {field_data_field_lat} VALUES ('taxonomy_term','universities', 0, :tid, :tid, 'und', 0, :lat)   ON DUPLICATE KEY UPDATE field_lat_value=:lat; INSERT INTO {field_data_field_lng} VALUES ('taxonomy_term','universities', 0, :tid, :tid, 'und', 0, :lng)   ON DUPLICATE KEY UPDATE field_lng_value=:lng;", array('tid' => $term->tid, 'lat' => $res["geometry"]["location"]["lat"], 'lng' => $res["geometry"]["location"]["lng"]));
           return;
-        }
+//        }
       }
     }
+    else if(isset($term->field_lat['und']) && isset($term->field_lng['und'])) return;
     drupal_set_message("Set the address of the university manually " . l(t('here.'), drupal_get_path_alias('taxonomy/term/' . $term->tid)));
   }
   
@@ -38,10 +40,22 @@ function universities_geolocate($term) {
 // Show a static map on the university page
 function universities_taxonomy_term_view_alter(&$build) {
   if($build['#bundle'] == 'universities') {
-    $build += common_stuff_static_map_block(array('width' => 200, 'height' => 200, 'lat' => $build['field_lat']['#items'][0]['value'], 'lng' => $build['field_lng']['#items'][0]['value'], 'title' => $build['#term']->name));
-    dpm($build);
-    unset($build['field_lat']);
-    unset($build['field_lng']);
-    unset($build['field_postcode']);
+    if(isset($build['field_lat']) && isset($build['field_lng'])) {
+      $build += common_stuff_static_map_block(array('width' => 200, 'height' => 200, 'lat' => $build['field_lat']['#items'][0]['value'], 'lng' => $build['field_lng']['#items'][0]['value'], 'title' => $build['#term']->name));
+      unset($build['field_lat']);
+      unset($build['field_lng']);
+    }
+    $build['field_street_name']['#prefix'] = '<div id="university-address"><h4>' . $build['#term']->name . '</h4>';
+    $build['field_postcode']['#suffix'] = '</div>';
+    $nodes = db_query('SELECT entity_id FROM field_data_field_unis WHERE field_unis_target_id=:tid', array('tid' => $build['#term']->tid))->fetchAll();
+    foreach($nodes as $nid) {
+      $node = node_load($nid->entity_id);
+      $build['content']['tagged'][$nid->entity_id] = array(
+        '#prefix' => '<div id="chabad-houses"><h3>Chabad Houses</h3>',
+        '#suffix' => '</div>',
+        '#markup' => l($node->title, "node/$nid->entity_id"),
+        '#weight' => -6,
+      );
+    }
   }
 }
